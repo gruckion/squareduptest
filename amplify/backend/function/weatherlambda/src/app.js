@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
   next()
 });
 
-app.get('/items', function(req, res) {
+app.get('/weather', function(req, res) {
   const weather = [{ temperature: 23, location: 'Oxford' }];
   res.json({success: 'get call succeed!', url: req.url, weather});
 });
