@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/weather",
+            "lambdaFunction": "weatherlambda",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "weatherapi",
+    "apiName": "weatherapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "weatherlambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-squareduptest-dev-114331-authRole",
+        "unAuthRoleName": "amplify-squareduptest-dev-114331-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "weatherlambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
