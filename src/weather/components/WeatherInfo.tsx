@@ -4,14 +4,14 @@ import { WeatherRow } from '../models/weather';
 
 interface WeatherInfoProps {
     title: string;
-    weatherRowData: WeatherRow[];
+    weatherRows: WeatherRow[];
 }
 
-const WeatherInfo: React.FunctionComponent<WeatherInfoProps> = ({title, weatherRowData}) => {
+const WeatherInfo: React.FunctionComponent<WeatherInfoProps> = ({title, weatherRows}) => {
     return (
         <>
             < div className="weather-info-container--title">{title}</div>
-            <WeatherTable weatherRowData={weatherRowData}/>
+            <WeatherTable weatherRows={weatherRows}/>
         </>
     );
 }

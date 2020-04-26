@@ -10,7 +10,7 @@ import "../styles/weather.scss";
 const Weather = () => {
 
     const [weather, setWeather] = React.useState<WeatherModel | null>(null);
-    const [weatherRowData, setWeatherRowData] = React.useState<WeatherRow[]>([]);
+    const [weatherRows, setWeatherRows] = React.useState<WeatherRow[]>([]);
 
     React.useEffect(() => {
         (async () => {
@@ -18,15 +18,16 @@ const Weather = () => {
             setWeather(weatherData?.weather || null);
             var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-            const x = weatherData?.weather.consolidated_weather.map<WeatherRow>(c => ({
+            const weatherRowsData = weatherData?.weather.consolidated_weather.map<WeatherRow>(c => ({
                 day: days[(new Date(c.applicable_date)).getDay()],
                 max_temperature: c.max_temp,
                 min_temperature: c.min_temp,
-                state: c.weather_state_abbr
+                stateAbbreviation: c.weather_state_abbr,
+                state: c.weather_state_name
             }));
 
-            if(x !== undefined) {
-                setWeatherRowData(x);
+            if(weatherRowsData !== undefined) {
+                setWeatherRows(weatherRowsData);
             }
 
         })();
@@ -46,9 +47,9 @@ const Weather = () => {
                         temperature={Math.round(weather.consolidated_weather[0].the_temp)}
                     />}
             </div>
-            {weather && weatherRowData ?
+            {weather && weatherRows ?
                 <WeatherContainer>
-                    <WeatherInfo title={weather.title} weatherRowData={weatherRowData} />
+                    <WeatherInfo title={weather.title} weatherRows={weatherRows} />
                 </WeatherContainer>
                 : <Progress />}
         </div>

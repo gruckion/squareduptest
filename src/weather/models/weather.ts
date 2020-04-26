@@ -55,5 +55,6 @@ export interface WeatherRow {
     day: string;
     max_temperature: number;
     min_temperature: number;
+    stateAbbreviation: string;
     state: string
 }

@@ -10,10 +10,10 @@ import { WeatherRow } from '../models/weather';
 import "../styles/weather-table.scss";
 
 interface WeatherTableProps {
-   weatherRowData: WeatherRow[];
+    weatherRows: WeatherRow[];
 }
 
-const WeatherTable: React.FunctionComponent<WeatherTableProps> = ({weatherRowData}) => {
+const WeatherTable: React.FunctionComponent<WeatherTableProps> = ({ weatherRows }) => {
     return (
         <TableContainer className="table-container" component={Paper}>
             <Table size="small" aria-label="a dense table">
@@ -26,7 +26,7 @@ const WeatherTable: React.FunctionComponent<WeatherTableProps> = ({weatherRowDat
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {weatherRowData.map((row: WeatherRow) => (
+                    {weatherRows.map((row: WeatherRow) => (
                         <TableRow key={row.day}>
                             <TableCell component="th" scope="row">
                                 {row.day}
@@ -34,7 +34,7 @@ const WeatherTable: React.FunctionComponent<WeatherTableProps> = ({weatherRowDat
                             <TableCell align="right">{Math.round(row.max_temperature)}</TableCell>
                             <TableCell align="right">{Math.round(row.min_temperature)}</TableCell>
                             <TableCell align="right">
-                                <img width="20em" src={`https://www.metaweather.com/static/img/weather/${row.state}.svg`} />
+                                <img alt={row.state} width="20em" src={`https://www.metaweather.com/static/img/weather/${row.stateAbbreviation}.svg`} />
                             </TableCell>
                         </TableRow>
                     ))}
