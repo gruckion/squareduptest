@@ -24,7 +24,8 @@ app.get('/weather', async function(req, res) {
       weather: response.data
     });
   } catch (exception) {
-
+    console.error("Error with weather image");
+    res.status(500);
   }
 });
 

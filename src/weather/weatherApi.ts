@@ -3,12 +3,12 @@ import { RootWeatherObject } from './models/weather';
 
 class WeatherApi {
     private readonly apiName = "weatherapi";
-    private readonly apiPath = "/weather";
+    private readonly weatherApiPath = "/weather";
+    private readonly weatherImageApiPath = "/weatherimage";
 
-    public async get(): Promise<RootWeatherObject | null> {
+    public async getWeatherData(): Promise<RootWeatherObject | null> {
         try {
-            // TODO: (Stephen) process the woeid param
-            const response = await API.get(this.apiName, this.apiPath, {
+            const response = await API.get(this.apiName, this.weatherApiPath, {
                 queryStringParameters: {
                     woeiud: 44418
                 }

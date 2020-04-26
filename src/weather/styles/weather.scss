@@ -23,7 +23,8 @@
 
     .weather-illistration--temperature {
         font-size: 2em;
-        color: #fff;animation: temperature-font-size 2s forwards;
+        color: #fff;
+        animation: temperature-font-size 1s forwards;
     }
 
     @keyframes temperature-font-size {
@@ -34,11 +35,14 @@
 }
 
 .weather-info-wrapper {
+    position: absolute;
+    animation: weather-info-slide-up 1s forwards;
+
     .weather-svg-container {
         width: 100vw;
         position: relative;
 
-        .weather-info-svg-curve {
+        .weather-info-svg-curves {
             display: block;
         }
     }
@@ -52,5 +56,10 @@
             font-weight: 500;
             padding-bottom: 1.2em;
         }
+    }
+
+    @keyframes weather-info-slide-up {
+        0%   { bottom: -30%; }
+        100% { bottom: 0; }
     }
 }

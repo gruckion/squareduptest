@@ -6,6 +6,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/weatherimage",
+            "lambdaFunction": "weatherlambda",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "weatherapi",
@@ -30,5 +37,6 @@
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "53af082a"
 }

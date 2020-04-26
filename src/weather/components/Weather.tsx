@@ -1,20 +1,44 @@
 import React from 'react';
 import { weatherApi } from '../weatherApi';
-import { WeatherModel } from '../models/weather';
+import { WeatherModel, WeatherRow } from '../models/weather';
 import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
 import { WeatherTable } from '.';
-import "../styles/weather.scss";
 import { Progress } from '../../progress';
+import "../styles/weather.scss";
+
+// const bob: WeatherRow[] = [
+//     { day: 'Monday', temperature: 404, state: 6.0 },
+//     { day: 'Tuesday', temperature: 21, state: 9.0 },
+//     { day: 'Wednesday', temperature: 23, state: 16.0 },
+//     { day: 'Thursday', temperature: 22, state: 3.7 },
+//     { day: 'Friday', temperature: 23, state: 16.0 },
+//     { day: 'Saturday', temperature: 25, state: 16.0 },
+//     { day: 'Sunday', temperature: 21, state: 16.0 }
+// ];
 
 const Weather = () => {
 
     const [weather, setWeather] = React.useState<WeatherModel | null>(null);
+    const [weatherRowData, setWeatherRowData] = React.useState<WeatherRow[]>([]);
 
     React.useEffect(() => {
         (async () => {
-            const response = await weatherApi.get();
-            setWeather(response?.weather || null);
+            const weatherData = await weatherApi.getWeatherData();
+            setWeather(weatherData?.weather || null);
+            var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+            const x = weatherData?.weather.consolidated_weather.map<WeatherRow>(c => ({
+                day: days[(new Date(c.applicable_date)).getDay()],
+                max_temperature: c.max_temp,
+                min_temperature: c.min_temp,
+                state: c.weather_state_name
+            }));
+
+            if(x !== undefined) {
+                setWeatherRowData(x);
+            }
+
         })();
     }, []);
 
@@ -39,8 +63,9 @@ const Weather = () => {
             {weather ?
                 <div className="weather-info-wrapper">
                     <div className="weather-svg-container">
-                        <svg className="weather-info-svg-curve" viewBox="0 0 1440 300">
+                        <svg className="weather-info-svg-curves" viewBox="0 0 1440 300">
                             <path
+                                className="weather-info-svg-curves--transparent"
                                 fill="#fff"
                                 fillOpacity="1"
                                 opacity="0.2"
@@ -58,7 +83,7 @@ const Weather = () => {
                     </div>
                     <div className="weather-info-container">
                         < div className="weather-info-container--title">{weather?.title}</div>
-                        <WeatherTable />
+                        <WeatherTable weatherRowData={weatherRowData}/>
                     </div>
                 </div>
                 : <Progress />}

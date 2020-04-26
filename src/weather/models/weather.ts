@@ -50,3 +50,10 @@ export interface RootWeatherObject {
     url: string;
     weather: WeatherModel;
 }
+
+export interface WeatherRow {
+    day: string;
+    max_temperature: number;
+    min_temperature: number;
+    state: string
+}
