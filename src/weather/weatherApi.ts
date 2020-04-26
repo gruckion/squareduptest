@@ -7,12 +7,13 @@ class WeatherApi {
 
     public async get(): Promise<RootWeatherObject | null> {
         try {
+            // TODO: (Stephen) process the woeid param
             const response = await API.get(this.apiName, this.apiPath, {
                 queryStringParameters: {
-                    woeid: 44418
+                    woeiud: 44418
                 }
             });
-            console.log("response: ", response.metaweather);
+            console.log("response: ", response);
             return response;
         } catch (exception) {
             console.error(exception);

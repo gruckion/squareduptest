@@ -2,12 +2,12 @@
     display: flex;
     flex-flow: column;
     height: 100%;
+    background-image: url('../images/weather.jpg');
 }
 
 .weather-illistration {
     padding-top: 2em;
-    height: 45vh;
-    background-color: grey;
+    height: 55vh;
 
     .weather-illistration--state-name {
         color: white;
@@ -22,4 +22,10 @@
 .weather-info-container {
     background-color: #fff;
     flex-grow: 1;
+
+    .weather-info-container--title {
+        font-size: 1.75em;
+        color: rgb(101, 123, 61);
+        font-weight: 500;
+    }
 }

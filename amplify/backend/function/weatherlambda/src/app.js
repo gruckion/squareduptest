@@ -14,10 +14,10 @@ app.use(function(req, res, next) {
   next()
 });
 
-app.get('/metaweather', async function(req, res) {
+app.get('/weather', async function(req, res) {
   try {
     //const axiosClient = applyCaseMiddleware(axios.create());
-    const response = await axios.get(`https://www.metaweather.com/api/location/${req.}/`);
+    const response = await axios.get(`https://www.metaweather.com/api/location/${req.query.woeiud}/`);
     res.json({
       success: 'get call succeed!',
       url: req.url,
