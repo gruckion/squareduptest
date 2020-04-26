@@ -1,7 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
-
+var axios = require('axios');
 // declare a new express app
 var app = express()
 app.use(bodyParser.json())
@@ -14,9 +14,18 @@ app.use(function(req, res, next) {
   next()
 });
 
-app.get('/weather', function(req, res) {
-  const weather = [{ temperature: 23, location: 'Oxford' }];
-  res.json({success: 'get call succeed!', url: req.url, weather});
+app.get('/metaweather', async function(req, res) {
+  try {
+    //const axiosClient = applyCaseMiddleware(axios.create());
+    const response = await axios.get(`https://www.metaweather.com/api/location/${req.}/`);
+    res.json({
+      success: 'get call succeed!',
+      url: req.url,
+      weather: response.data
+    });
+  } catch (exception) {
+
+  }
 });
 
 app.listen(3000, function() {

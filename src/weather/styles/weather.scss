@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.weather-illistration {
+    padding-top: 2em;
+    height: 45vh;
+    background-color: grey;
+
+    .weather-illistration--state-name {
+        color: white;
+    }
+
+    .weather-illistration--temperature {
+        font-size: 4em;
+        color: #fff;
+    }
+}
+
+.weather-info-container {
+    background-color: #fff;
+    flex-grow: 1;
+}
