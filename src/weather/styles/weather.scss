@@ -3,6 +3,14 @@
     flex-flow: column;
     height: 100%;
     background-image: url('../images/weather.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+
+    .float-add {
+        position:absolute;
+        right: 1em;
+        top: 1em;
+    }
 }
 
 .weather-illistration {
@@ -14,18 +22,35 @@
     }
 
     .weather-illistration--temperature {
-        font-size: 4em;
-        color: #fff;
+        font-size: 2em;
+        color: #fff;animation: temperature-font-size 2s forwards;
     }
+
+    @keyframes temperature-font-size {
+        0%   { font-size: 2em; }
+        100% { font-size: 3em; }
+    }
+
 }
 
-.weather-info-container {
-    background-color: #fff;
-    flex-grow: 1;
+.weather-info-wrapper {
+    .weather-svg-container {
+        width: 100vw;
+        position: relative;
 
-    .weather-info-container--title {
-        font-size: 1.75em;
-        color: rgb(101, 123, 61);
-        font-weight: 500;
+        .weather-info-svg-curve {
+            display: block;
+        }
+    }
+    .weather-info-container {
+        background-color: #fff;
+        flex-grow: 1;
+
+        .weather-info-container--title {
+            font-size: 1.75em;
+            color: rgb(101, 123, 61);
+            font-weight: 500;
+            padding-bottom: 1.2em;
+        }
     }
 }
