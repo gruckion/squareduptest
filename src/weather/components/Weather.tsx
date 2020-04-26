@@ -7,16 +7,6 @@ import { WeatherTable } from '.';
 import { Progress } from '../../progress';
 import "../styles/weather.scss";
 
-// const bob: WeatherRow[] = [
-//     { day: 'Monday', temperature: 404, state: 6.0 },
-//     { day: 'Tuesday', temperature: 21, state: 9.0 },
-//     { day: 'Wednesday', temperature: 23, state: 16.0 },
-//     { day: 'Thursday', temperature: 22, state: 3.7 },
-//     { day: 'Friday', temperature: 23, state: 16.0 },
-//     { day: 'Saturday', temperature: 25, state: 16.0 },
-//     { day: 'Sunday', temperature: 21, state: 16.0 }
-// ];
-
 const Weather = () => {
 
     const [weather, setWeather] = React.useState<WeatherModel | null>(null);
@@ -32,7 +22,7 @@ const Weather = () => {
                 day: days[(new Date(c.applicable_date)).getDay()],
                 max_temperature: c.max_temp,
                 min_temperature: c.min_temp,
-                state: c.weather_state_name
+                state: c.weather_state_abbr
             }));
 
             if(x !== undefined) {
@@ -41,10 +31,6 @@ const Weather = () => {
 
         })();
     }, []);
-
-    // if(!weather) {
-    //     return (<div>No Content</div>)
-    // }
 
     return (
         <div className="container">

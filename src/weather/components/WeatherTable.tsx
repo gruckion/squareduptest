@@ -33,7 +33,9 @@ const WeatherTable: React.FunctionComponent<WeatherTableProps> = ({weatherRowDat
                             </TableCell>
                             <TableCell align="right">{Math.round(row.max_temperature)}</TableCell>
                             <TableCell align="right">{Math.round(row.min_temperature)}</TableCell>
-                            <TableCell align="right">{row.state}</TableCell>
+                            <TableCell align="right">
+                                <img width="20em" src={`https://www.metaweather.com/static/img/weather/${row.state}.svg`} />
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
