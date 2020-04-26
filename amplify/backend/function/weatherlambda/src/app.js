@@ -16,18 +16,30 @@ app.use(function(req, res, next) {
 
 app.get('/weather', async function(req, res) {
   try {
-    //const axiosClient = applyCaseMiddleware(axios.create());
     const response = await axios.get(`https://www.metaweather.com/api/location/${req.query.woeiud}/`);
     res.json({
-      success: 'get call succeed!',
       url: req.url,
       weather: response.data
     });
   } catch (exception) {
-    console.error("Error with weather image");
+    console.error("Error fetching weather data");
     res.status(500);
   }
 });
+
+app.get('/location', async function(req, res) {
+  try {
+    const response = await axios.get(`https://www.metaweather.com/api/location/search/?query=${req.query.query}/`);
+    res.json({
+      url: req.url,
+      locations: response.data
+    });
+  } catch (exception) {
+    console.error("Error fetching location results");
+    res.status(500);
+  }
+});
+
 
 app.listen(3000, function() {
     console.log("App started")

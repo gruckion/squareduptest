@@ -13,6 +13,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/location",
+            "lambdaFunction": "weatherlambda",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "weatherapi",
@@ -38,5 +45,5 @@
             ]
         }
     ],
-    "uuid": "53af082a"
+    "uuid": "174e7ff8"
 }
