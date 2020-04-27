@@ -4,6 +4,10 @@
 
 The project is live at https://github.com/gruckion/squareduptest
 
+# Disclaimer
+
+The application is designed for dimesnions 414 by 736 on chrome desktop. The application has some minor CSS issues on IOS.
+
 # Setup
 
 You will need the Amplify CLI tool in order to run provision the backend of this project on AWS.
