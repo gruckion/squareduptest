@@ -1,10 +1,15 @@
-<img width="419px" src="https://i.imgur.com/2In0IwT.png" />
-<img width="419px" src="https://i.imgur.com/ptyFNx9.png" />
-<img width="419px" src="https://i.imgur.com/TelMbOX.png" />
+<img width="200px" src="https://i.imgur.com/2In0IwT.png" />
+<img width="200px" src="https://i.imgur.com/ptyFNx9.png" />
+<img width="200px" src="https://i.imgur.com/TelMbOX.png" />
 
 The project is live at https://github.com/gruckion/squareduptest
 
 # Disclaimer
+
+This application was built as part of a technical test using React and AWS Amplify.
+
+<img height="100px" src="https://cdn.iconscout.com/icon/free/png-512/react-4-1175110.png" />
+<img height="100px" src="https://miro.medium.com/fit/c/1838/551/1*EB-8t3dR5qMQYNXyqgM2wQ.png" />
 
 The application is designed for dimesnions 414 by 736 on chrome desktop. The application has some minor CSS issues on IOS.
 
