@@ -1,6 +1,7 @@
 import { API } from "aws-amplify";
 import { WeatherLocation, WeatherModel, ConsolidatedWeather, WeatherRow, WeatherData } from "./models/weather";
 import { error } from "../toast";
+import { days } from "../common/constants";
 
 class WeatherApi {
     private readonly apiName = "weatherapi";
@@ -41,7 +42,6 @@ class WeatherApi {
     }
 
     public parseWeatherData(consolidated_weather: ConsolidatedWeather[]): WeatherRow[] {
-        const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         return consolidated_weather.map<WeatherRow>(c => ({
             day: days[(new Date(c.applicable_date)).getDay()],
             max_temperature: c.max_temp,
