@@ -1,11 +1,11 @@
 import React from "react";
-import { WeatherLocationsList } from '.';
+import { WeatherLocationsList } from ".";
 import { WeatherLocation } from "../models/weather";
-import { debounceDelay } from '../../common/constants';
-import { weatherApi } from '../weatherApi';
-import "../styles/weather-locations.scss"
+import { debounceDelay } from "../../common/constants";
+import { weatherApi } from "../weatherApi";
+import "../styles/weather-locations.scss";
 import { Progress } from "../../progress";
-var debounce = require('lodash.debounce');
+import debounce from "lodash.debounce";
 
 interface WeatherLocationsProps {
     onChooseLocation: (woeid: number) => void;
@@ -15,10 +15,10 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
 
     const [weatherLocationRows, setWeatherLocationRows] = React.useState<WeatherLocation[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);
-    const [locationName, setLocationName] = React.useState<string>('');
+    const [locationName, setLocationName] = React.useState<string>("");
 
-    const debounceLocationData = debounce(async (locationName: string) => {
-        const locationData = await weatherApi.getLocationData(locationName);
+    const debounceLocationData = debounce(async (input: string) => {
+        const locationData = await weatherApi.getLocationData(input);
         if (locationData !== null) {
             setWeatherLocationRows(locationData);
         }
@@ -27,24 +27,24 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
 
     const onChangeLocationName = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoading(true);
-        const locationName = e.target.value;
-        setLocationName(locationName);
-        if (locationName.length === 0) {
+        const inputValue = e.target.value;
+        setLocationName(inputValue);
+        if (inputValue.length === 0) {
             setWeatherLocationRows([]);
             setLoading(false);
             return;
         }
-        await debounceLocationData(locationName);
-    }
+        await debounceLocationData(inputValue);
+    };
 
     const resetLocationSearch = () => {
         setWeatherLocationRows([]);
-    }
+    };
 
     const onChooseLocationChild = (woeid: number) => {
         onChooseLocation(woeid);
         resetLocationSearch();
-    }
+    };
 
     return (
         <div className="locations-container">
@@ -64,6 +64,6 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
             }
 
         </div>);
-}
+};
 
 export { WeatherLocations };

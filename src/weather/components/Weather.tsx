@@ -1,14 +1,14 @@
-import React from 'react';
-import { weatherApi } from '../weatherApi';
-import { WeatherModel, WeatherRow, ConsolidatedWeather } from '../models/weather';
-import { Fab } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocations } from '.';
-import { Progress } from '../../progress';
+import React from "react";
+import { weatherApi } from "../weatherApi";
+import { WeatherModel, WeatherRow, ConsolidatedWeather } from "../models/weather";
+import { Fab } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocations } from ".";
+import { Progress } from "../../progress";
 import "../styles/weather.scss";
 
 const buildWeatherTable = (consolidated_weather: ConsolidatedWeather[]) => {
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     return consolidated_weather.map<WeatherRow>(c => ({
         day: days[(new Date(c.applicable_date)).getDay()],
         max_temperature: c.max_temp,
@@ -39,24 +39,24 @@ const Weather = () => {
 
     const onChangeLocation = () => {
         resetSelectedCity();
-    }
+    };
 
     const onChooseLocation = (woeid: number) => {
         setCurrentWoeid(woeid);
-    }
+    };
 
     const resetSelectedCity = () => {
         setCurrentWoeid(-1);
         setWeather(null);
         setWeatherRows([]);
-    }
+    };
 
     return (
         <div className="container">
             <div className="float-add">
                 {currentWoeid !== -1 &&
                     <Fab color="default" aria-label="add" onClick={onChangeLocation}>
-                            <CloseIcon htmlColor="rgb(101, 123, 61)" />
+                        <CloseIcon htmlColor="rgb(101, 123, 61)" />
                     </Fab>}
             </div>
             <div className="weather-illistration">
@@ -66,22 +66,22 @@ const Weather = () => {
                         temperature={Math.round(weather.consolidated_weather[0].the_temp)}
                     />}
             </div>
-                {currentWoeid === -1 ?
-                    <WeatherContainer>
-                        <WeatherLocations
-                            onChooseLocation={onChooseLocation}
-                        />
-                    </WeatherContainer>
-                    : weather && weatherRows && weatherRows.length > 0 ?
+            {currentWoeid === -1 ?
+                <WeatherContainer>
+                    <WeatherLocations
+                        onChooseLocation={onChooseLocation}
+                    />
+                </WeatherContainer>
+                : weather && weatherRows && weatherRows.length > 0 ?
                     <WeatherContainer>
                         <WeatherInfo title={weather.title} weatherRows={weatherRows} />
                     </WeatherContainer>
                     : <Progress />
-                }
+            }
 
-              {}
+            {}
         </div>
-    )
+    );
 };
 
 export { Weather };

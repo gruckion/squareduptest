@@ -50,7 +50,7 @@ export interface WeatherRow {
     max_temperature: number;
     min_temperature: number;
     stateAbbreviation: string;
-    state: string
+    state: string;
 }
 
 export interface WeatherLocation {

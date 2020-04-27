@@ -12,6 +12,6 @@ const WeatherOverview: React.FunctionComponent<WeatherOverviewProps> = ({weather
             <div className="weather-illistration--temperature">{temperature}&#176;</div>
         </React.Fragment>
     );
-}
+};
 
-export { WeatherOverview }
+export { WeatherOverview };

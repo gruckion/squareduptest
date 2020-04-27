@@ -1,6 +1,6 @@
 import React from "react";
 import { WeatherTable } from ".";
-import { WeatherRow } from '../models/weather';
+import { WeatherRow } from "../models/weather";
 
 interface WeatherInfoProps {
     title: string;
@@ -10,10 +10,10 @@ interface WeatherInfoProps {
 const WeatherInfo: React.FunctionComponent<WeatherInfoProps> = ({title, weatherRows}) => {
     return (
         <>
-            < div className="weather-info-container--title">{title}</div>
-            <WeatherTable weatherRows={weatherRows}/>
+            <div className="weather-info-container--title">{title}</div>
+            <WeatherTable weatherRows={weatherRows} />
         </>
     );
-}
+};
 
 export { WeatherInfo };

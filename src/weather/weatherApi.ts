@@ -1,5 +1,5 @@
-import { API } from 'aws-amplify';
-import { WeatherLocation, WeatherModel } from './models/weather';
+import { API } from "aws-amplify";
+import { WeatherLocation, WeatherModel } from "./models/weather";
 import { error } from "../toast";
 
 class WeatherApi {
@@ -17,7 +17,6 @@ class WeatherApi {
             return response;
         } catch (exception) {
             error("Error fetching Weather Data");
-            console.error(exception);
             return null;
         }
     }
@@ -32,7 +31,6 @@ class WeatherApi {
             return response;
         } catch (exception) {
             error("Error fetching Weather Data");
-            console.error(exception);
             return null;
         }
     }
