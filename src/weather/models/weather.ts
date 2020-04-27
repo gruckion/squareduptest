@@ -45,16 +45,17 @@ export interface WeatherModel {
     timezone: string;
 }
 
-export interface RootWeatherObject {
-    success: string;
-    url: string;
-    weather: WeatherModel;
-}
-
 export interface WeatherRow {
     day: string;
     max_temperature: number;
     min_temperature: number;
     stateAbbreviation: string;
     state: string
+}
+
+export interface WeatherLocation {
+    title: string;
+    location_type: string;
+    woeid: number;
+    latt_long: string;
 }

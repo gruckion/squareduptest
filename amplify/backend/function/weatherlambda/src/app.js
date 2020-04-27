@@ -16,11 +16,8 @@ app.use(function(req, res, next) {
 
 app.get('/weather', async function(req, res) {
   try {
-    const response = await axios.get(`https://www.metaweather.com/api/location/${req.query.woeiud}/`);
-    res.json({
-      url: req.url,
-      weather: response.data
-    });
+    const response = await axios.get(`https://www.metaweather.com/api/location/${req.query.woeid}/`);
+    res.json(response.data);
   } catch (exception) {
     console.error("Error fetching weather data");
     res.status(500);
@@ -29,11 +26,8 @@ app.get('/weather', async function(req, res) {
 
 app.get('/location', async function(req, res) {
   try {
-    const response = await axios.get(`https://www.metaweather.com/api/location/search/?query=${req.query.query}/`);
-    res.json({
-      url: req.url,
-      locations: response.data
-    });
+    const response = await axios.get(`https://www.metaweather.com/api/location/search/?query=${req.query.location}`);
+    res.json(response.data);
   } catch (exception) {
     console.error("Error fetching location results");
     res.status(500);

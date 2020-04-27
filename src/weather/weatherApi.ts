@@ -1,16 +1,16 @@
 import { API } from 'aws-amplify';
-import { RootWeatherObject } from './models/weather';
+import { WeatherLocation, WeatherModel } from './models/weather';
 
 class WeatherApi {
     private readonly apiName = "weatherapi";
     private readonly weatherApiPath = "/weather";
     private readonly weatherLocationApiPath = "/location";
 
-    public async getWeatherData(woeiud: number): Promise<RootWeatherObject | null> {
+    public async getWeatherData(woeid: number): Promise<WeatherModel | null> {
         try {
             const response = await API.get(this.apiName, this.weatherApiPath, {
                 queryStringParameters: {
-                    woeiud
+                    woeid
                 }
             });
             return response;
@@ -20,11 +20,11 @@ class WeatherApi {
         }
     }
 
-    public async getLocationData(query: string): Promise<RootWeatherObject | null> {
+    public async getLocationData(location: string): Promise<WeatherLocation[] | null> {
         try {
             const response = await API.get(this.apiName, this.weatherLocationApiPath, {
                 queryStringParameters: {
-                    query
+                    location
                 }
             });
             console.log("response: ", response);

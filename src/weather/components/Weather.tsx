@@ -1,11 +1,12 @@
 import React from 'react';
 import { weatherApi } from '../weatherApi';
-import { WeatherModel, WeatherRow, ConsolidatedWeather } from '../models/weather';
+import { WeatherModel, WeatherRow, ConsolidatedWeather, WeatherLocation } from '../models/weather';
 import { Fab } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { WeatherContainer, WeatherInfo, WeatherOverview } from '.';
+import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocationsList } from '.';
 import { Progress } from '../../progress';
 import "../styles/weather.scss";
+import { debounceDelay } from '../../common/constants';
 
 var debounce = require('lodash.debounce');
 
@@ -23,43 +24,61 @@ const buildWeatherTable = (consolidated_weather: ConsolidatedWeather[]) => {
 const Weather = () => {
 
     const [locationName, setLocationName] = React.useState<string>('');
-    const [currentWoeiud, setCurrentWoeiud] = React.useState<number>(-1);
+    const [currentWoeid, setCurrentWoeid] = React.useState<number>(-1);
     const [weather, setWeather] = React.useState<WeatherModel | null>(null);
     const [weatherRows, setWeatherRows] = React.useState<WeatherRow[]>([]);
-
-    // React.useEffect(() => {
-    //     (async () => {
-    //         console.log('locationData: ', locationData);
-    //     })();
-    // }, [currentWoeiud, locationName]);
+    const [weatherLocationRows, setWeatherLocationRows] = React.useState<WeatherLocation[]>([]);
 
     React.useEffect(() => {
         (async () => {
-            if(currentWoeiud !== -1) {
-                const weatherData = await weatherApi.getWeatherData(currentWoeiud);
-                setWeather(weatherData?.weather || null);
+            if(currentWoeid !== -1) {
+                const weatherData = await weatherApi.getWeatherData(currentWoeid);
+                setWeather(weatherData);
 
-                if(weatherData !== null && weatherData.weather.consolidated_weather !== null) {
-                    setWeatherRows(buildWeatherTable(weatherData?.weather.consolidated_weather));
+                if(weatherData !== null && weatherData.consolidated_weather !== null) {
+                    setWeatherRows(buildWeatherTable(weatherData.consolidated_weather));
                 }
             }
         })();
-    }, [currentWoeiud]);
+    }, [currentWoeid]);
 
     const onChangeLocation = () => {
-        setCurrentWoeiud(-1);
+        resetSelectedCity();
+    }
+
+    const debounceLocationData = debounce(async (locationName: string) => {
+        const locationData = await weatherApi.getLocationData(locationName);
+        if (locationData !== null) {
+            setWeatherLocationRows(locationData);
+        }
+        setLocationName(locationName);
+   }, debounceDelay);
+
+    const onChangeLocationName = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const locationName = e.target.value;
+        await debounceLocationData(locationName);
+    }
+
+    const onChooseLocation = (woeid: number) => {
+        setCurrentWoeid(woeid);
+        resetLocationSearch();
+    }
+
+    const resetSelectedCity = () => {
+        setCurrentWoeid(-1);
         setWeather(null);
         setWeatherRows([]);
     }
 
-    const onChangeLocationName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLocationName(e.target.value);
+    const resetLocationSearch = () => {
+        setWeatherLocationRows([]);
+        setLocationName('');
     }
 
     return (
         <div className="container">
             <div className="float-add">
-                {currentWoeiud !== -1 &&
+                {currentWoeid !== -1 &&
                     <Fab color="default" aria-label="add" onClick={onChangeLocation}>
                             <CloseIcon htmlColor="rgb(101, 123, 61)" />
                     </Fab>}
@@ -71,19 +90,16 @@ const Weather = () => {
                         temperature={Math.round(weather.consolidated_weather[0].the_temp)}
                     />}
             </div>
-
-
-                {currentWoeiud === -1 ?
+                {currentWoeid === -1 ?
                     <WeatherContainer>
                         <>
-                            <input type="text" value={locationName} placeholder="Enter City" onChange={onChangeLocationName} />
-                            {locationName}
-                            <br />
-                            <br />
-                            <br />
+                            <input type="text" placeholder="Search" onChange={onChangeLocationName} />
+                            {weatherLocationRows && weatherLocationRows.length > 0 ?
+                                <WeatherLocationsList weatherLocations={weatherLocationRows} onChooseLocation={onChooseLocation} />
+                                : <><br /><br /><br /></>}
                         </>
                     </WeatherContainer>
-                    : weather && weatherRows ?
+                    : weather && weatherRows && weatherRows.length > 0 ?
                     <WeatherContainer>
                         <WeatherInfo title={weather.title} weatherRows={weatherRows} />
                     </WeatherContainer>

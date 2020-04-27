@@ -63,7 +63,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-squareduptest-dev-114331-deployment",
-					"S3Key": "amplify-builds/weatherlambda-344d7a312b5449643873-build.zip"
+					"S3Key": "amplify-builds/weatherlambda-2b696574394171585450-build.zip"
 				}
 			}
 		},
