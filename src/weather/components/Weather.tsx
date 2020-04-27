@@ -14,6 +14,11 @@ const Weather = () => {
     const [title, setTitle] = React.useState<string>('');
 
     React.useEffect(() => {
+        const saveWoeid = localStorage.getItem('woeid');
+        if(saveWoeid) {
+            setCurrentWoeid(parseInt(saveWoeid));
+        }
+
         (async () => {
             if(currentWoeid !== -1) {
                 const weatherData = await weatherApi.getWeatherData(currentWoeid);
@@ -35,30 +40,33 @@ const Weather = () => {
     };
 
     const onChooseLocation = (woeid: number) => {
+        localStorage.setItem('woeid', woeid.toString());
         setCurrentWoeid(woeid);
     };
 
     const resetSelectedCity = () => {
+        localStorage.removeItem('woeid');
         setCurrentWoeid(-1);
         setWeatherRows([]);
     };
+
+    const renderWeatherContent = (): JSX.Element => {
+        if (currentWoeid === -1) {
+            return ( <WeatherLocations onChooseLocation={onChooseLocation} />);
+        } else if (weatherRows && weatherRows.length > 0) {
+            return (<WeatherInfo title={title} weatherRows={weatherRows} />);
+        } else {
+            return (<Progress />);
+        }
+    }
 
     return (
         <div className="container">
             <FabClose currentWoeid={currentWoeid} onChangeLocation={onChangeLocation} />
             <WeatherIllistration weatherRows={weatherRows} temperature={temperature}/>
-            {currentWoeid === -1 ?
-                <WeatherContainer>
-                    <WeatherLocations
-                        onChooseLocation={onChooseLocation}
-                    />
-                </WeatherContainer>
-                : weatherRows && weatherRows.length > 0 ?
-                    <WeatherContainer>
-                        <WeatherInfo title={title} weatherRows={weatherRows} />
-                    </WeatherContainer>
-                    : <WeatherContainer><Progress /></WeatherContainer>
-            }
+            <WeatherContainer>
+                {renderWeatherContent()}
+            </WeatherContainer>
         </div>
     );
 };
