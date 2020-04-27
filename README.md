@@ -2,7 +2,7 @@
 <img width="200px" src="https://i.imgur.com/ptyFNx9.png" />
 <img width="200px" src="https://i.imgur.com/TelMbOX.png" />
 
-The project is live at https://github.com/gruckion/squareduptest
+The project is live at https://gruckion.github.io/squareduptest
 
 # Disclaimer
 
