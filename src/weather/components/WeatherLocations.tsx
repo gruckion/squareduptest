@@ -15,6 +15,7 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
 
     const [weatherLocationRows, setWeatherLocationRows] = React.useState<WeatherLocation[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);
+    const [locationName, setLocationName] = React.useState<string>('');
 
     const debounceLocationData = debounce(async (locationName: string) => {
         const locationData = await weatherApi.getLocationData(locationName);
@@ -32,6 +33,7 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
             setLoading(false);
             return;
         }
+        setLocationName(locationName);
         await debounceLocationData(locationName);
     }
 
@@ -55,7 +57,11 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
                 <Progress />}
 
             {weatherLocationRows && weatherLocationRows.length > 0 &&
-                <WeatherLocationsList weatherLocations={weatherLocationRows} onChooseLocation={onChooseLocationChild} /> }
+                <WeatherLocationsList weatherLocations={weatherLocationRows} onChooseLocation={onChooseLocationChild} />}
+
+            {locationName.length > 0 && weatherLocationRows && weatherLocationRows.length === 0 && !loading &&
+                <div>No results found.</div>
+            }
 
         </div>);
 }

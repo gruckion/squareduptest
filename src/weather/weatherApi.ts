@@ -1,5 +1,6 @@
 import { API } from 'aws-amplify';
 import { WeatherLocation, WeatherModel } from './models/weather';
+import { error, success } from "../toast";
 
 class WeatherApi {
     private readonly apiName = "weatherapi";
@@ -15,6 +16,7 @@ class WeatherApi {
             });
             return response;
         } catch (exception) {
+            error("Error fetching Weather Data");
             console.error(exception);
             return null;
         }
@@ -27,9 +29,9 @@ class WeatherApi {
                     location
                 }
             });
-            console.log("response: ", response);
             return response;
         } catch (exception) {
+            error("Error fetching Weather Data");
             console.error(exception);
             return null;
         }

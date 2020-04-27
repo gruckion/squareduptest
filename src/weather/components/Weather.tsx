@@ -1,6 +1,6 @@
 import React from 'react';
 import { weatherApi } from '../weatherApi';
-import { WeatherModel, WeatherRow, ConsolidatedWeather, WeatherLocation } from '../models/weather';
+import { WeatherModel, WeatherRow, ConsolidatedWeather } from '../models/weather';
 import { Fab } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocations } from '.';
