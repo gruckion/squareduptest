@@ -5,7 +5,7 @@ import "../styles/progress.scss";
 const Progress = () => {
     return (
         <div className="progress-container">
-            <CircularProgress className="bob" color="primary" />
+            <CircularProgress className="progress-indicator" color="primary" />
         </div>
     );
 };

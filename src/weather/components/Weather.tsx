@@ -1,11 +1,10 @@
 import React from "react";
 import { weatherApi } from "../weatherApi";
 import { WeatherRow } from "../models/weather";
-import { Fab } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocations } from ".";
+import { WeatherContainer, WeatherInfo, WeatherLocations, WeatherIllistration } from ".";
 import { Progress } from "../../progress";
 import "../styles/weather.scss";
+import { FabClose } from "../../fabButton/components/FabClose";
 
 const Weather = () => {
 
@@ -46,19 +45,8 @@ const Weather = () => {
 
     return (
         <div className="container">
-            <div className="float-add">
-                {currentWoeid !== -1 &&
-                    <Fab color="default" aria-label="add" onClick={onChangeLocation}>
-                        <CloseIcon htmlColor="rgb(101, 123, 61)" />
-                    </Fab>}
-            </div>
-            <div className="weather-illistration">
-                {weatherRows && weatherRows.length > 0 &&
-                    <WeatherOverview
-                        weatherStateName={weatherRows[0].state}
-                        temperature={Math.round(temperature)}
-                    />}
-            </div>
+            <FabClose currentWoeid={currentWoeid} onChangeLocation={onChangeLocation} />
+            <WeatherIllistration weatherRows={weatherRows} temperature={temperature}/>
             {currentWoeid === -1 ?
                 <WeatherContainer>
                     <WeatherLocations
@@ -69,10 +57,8 @@ const Weather = () => {
                     <WeatherContainer>
                         <WeatherInfo title={title} weatherRows={weatherRows} />
                     </WeatherContainer>
-                    : <Progress />
+                    : <WeatherContainer><Progress /></WeatherContainer>
             }
-
-            {}
         </div>
     );
 };

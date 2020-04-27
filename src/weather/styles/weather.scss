@@ -2,64 +2,7 @@
     display: flex;
     flex-flow: column;
     height: 100%;
-    background-image: url('../images/weather.jpg');
+    background-image: url("../images/weather.jpg");
     background-repeat: no-repeat;
-    background-size:cover;
-
-    .float-add {
-        position:absolute;
-        right: 1em;
-        top: 1em;
-    }
-}
-
-.weather-illistration {
-    padding-top: 2em;
-    height: 55vh;
-
-    .weather-illistration--state-name {
-        color: white;
-    }
-
-    .weather-illistration--temperature {
-        font-size: 2em;
-        color: #fff;
-        animation: temperature-font-size 1s forwards;
-    }
-
-    @keyframes temperature-font-size {
-        0%   { font-size: 2em; }
-        100% { font-size: 3em; }
-    }
-
-}
-
-.weather-info-wrapper {
-    position: absolute;
-    animation: weather-info-slide-up 1s forwards;
-
-    .weather-svg-container {
-        width: 100vw;
-        position: relative;
-
-        .weather-info-svg-curves {
-            display: block;
-        }
-    }
-    .weather-info-container {
-        background-color: #fff;
-        flex-grow: 1;
-
-        .weather-info-container--title {
-            font-size: 1.75em;
-            color: rgb(101, 123, 61);
-            font-weight: 500;
-            padding-bottom: 1.2em;
-        }
-    }
-
-    @keyframes weather-info-slide-up {
-        0%   { bottom: -30%; }
-        100% { bottom: 0; }
-    }
+    background-size: cover;
 }

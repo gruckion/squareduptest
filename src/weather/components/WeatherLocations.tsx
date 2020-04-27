@@ -3,9 +3,9 @@ import { WeatherLocationsList } from ".";
 import { WeatherLocation } from "../models/weather";
 import { debounceDelay } from "../../common/constants";
 import { weatherApi } from "../weatherApi";
-import "../styles/weather-locations.scss";
 import { Progress } from "../../progress";
 import debounce from "lodash.debounce";
+import "../styles/weather-locations.scss";
 
 interface WeatherLocationsProps {
     onChooseLocation: (woeid: number) => void;
@@ -53,7 +53,6 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
                 type="text"
                 placeholder="Search"
                 onChange={onChangeLocationName}
-                autoFocus
             />
 
             { !!weatherLocationRows &&

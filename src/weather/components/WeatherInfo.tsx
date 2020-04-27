@@ -1,6 +1,7 @@
 import React from "react";
 import { WeatherTable } from ".";
 import { WeatherRow } from "../models/weather";
+import "../styles/weather-info.scss";
 
 interface WeatherInfoProps {
     title: string;
