@@ -45,6 +45,12 @@ export interface WeatherModel {
     timezone: string;
 }
 
+export interface WeatherData {
+    title: string;
+    temperature: number;
+    weatherRows: WeatherRow[]
+}
+
 export interface WeatherRow {
     day: string;
     max_temperature: number;
