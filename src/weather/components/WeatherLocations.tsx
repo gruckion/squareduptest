@@ -48,7 +48,13 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
 
     return (
         <div className="locations-container">
-            <input className="locations-input" type="text" placeholder="Search" onChange={onChangeLocationName} />
+            <input
+                className="locations-input"
+                type="text"
+                placeholder="Search"
+                onChange={onChangeLocationName}
+                autoFocus
+            />
 
             { !!weatherLocationRows &&
                 <div className="locations-instructions-text">Enter a City to display weather data.</div>}
