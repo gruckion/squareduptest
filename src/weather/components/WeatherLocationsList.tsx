@@ -13,7 +13,7 @@ const WeatherLocationsList: React.FunctionComponent<WeatherTableProps> = ({ weat
     return (
         <List className="locations-list">
             {weatherLocations.map((row: WeatherLocation) => (
-                <ListItem button key={row.latt_long} onClick={() => onChooseLocation(row.woeid)}>
+                <ListItem component="a" button key={row.latt_long} onClick={() => onChooseLocation(row.woeid)}>
                     {row.title} {row.location_type}
                 </ListItem>
             ))}

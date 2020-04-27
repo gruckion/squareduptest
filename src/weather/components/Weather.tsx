@@ -3,12 +3,12 @@ import { weatherApi } from '../weatherApi';
 import { WeatherModel, WeatherRow, ConsolidatedWeather, WeatherLocation } from '../models/weather';
 import { Fab } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocationsList } from '.';
+import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocations } from '.';
 import { Progress } from '../../progress';
-import "../styles/weather.scss";
-import { debounceDelay } from '../../common/constants';
 
-var debounce = require('lodash.debounce');
+import "../styles/weather.scss";
+
+
 
 const buildWeatherTable = (consolidated_weather: ConsolidatedWeather[]) => {
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -23,11 +23,9 @@ const buildWeatherTable = (consolidated_weather: ConsolidatedWeather[]) => {
 
 const Weather = () => {
 
-    const [locationName, setLocationName] = React.useState<string>('');
     const [currentWoeid, setCurrentWoeid] = React.useState<number>(-1);
     const [weather, setWeather] = React.useState<WeatherModel | null>(null);
     const [weatherRows, setWeatherRows] = React.useState<WeatherRow[]>([]);
-    const [weatherLocationRows, setWeatherLocationRows] = React.useState<WeatherLocation[]>([]);
 
     React.useEffect(() => {
         (async () => {
@@ -46,33 +44,14 @@ const Weather = () => {
         resetSelectedCity();
     }
 
-    const debounceLocationData = debounce(async (locationName: string) => {
-        const locationData = await weatherApi.getLocationData(locationName);
-        if (locationData !== null) {
-            setWeatherLocationRows(locationData);
-        }
-        setLocationName(locationName);
-   }, debounceDelay);
-
-    const onChangeLocationName = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const locationName = e.target.value;
-        await debounceLocationData(locationName);
-    }
-
     const onChooseLocation = (woeid: number) => {
         setCurrentWoeid(woeid);
-        resetLocationSearch();
     }
 
     const resetSelectedCity = () => {
         setCurrentWoeid(-1);
         setWeather(null);
         setWeatherRows([]);
-    }
-
-    const resetLocationSearch = () => {
-        setWeatherLocationRows([]);
-        setLocationName('');
     }
 
     return (
@@ -92,12 +71,9 @@ const Weather = () => {
             </div>
                 {currentWoeid === -1 ?
                     <WeatherContainer>
-                        <>
-                            <input type="text" placeholder="Search" onChange={onChangeLocationName} />
-                            {weatherLocationRows && weatherLocationRows.length > 0 ?
-                                <WeatherLocationsList weatherLocations={weatherLocationRows} onChooseLocation={onChooseLocation} />
-                                : <><br /><br /><br /></>}
-                        </>
+                        <WeatherLocations
+                            onChooseLocation={onChooseLocation}
+                        />
                     </WeatherContainer>
                     : weather && weatherRows && weatherRows.length > 0 ?
                     <WeatherContainer>
