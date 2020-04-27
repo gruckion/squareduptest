@@ -9,4 +9,8 @@
         margin-bottom: 1em;
         font-size: 0.9em;
     }
+
+    @media (min-width: 768px) {
+        margin: 0 10vw;
+    }
 }

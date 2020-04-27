@@ -53,6 +53,7 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
                 type="text"
                 placeholder="Search"
                 onChange={onChangeLocationName}
+                autoFocus={false}
             />
 
             { !!weatherLocationRows &&
