@@ -1,6 +1,6 @@
 import { API } from 'aws-amplify';
 import { WeatherLocation, WeatherModel } from './models/weather';
-import { error, success } from "../toast";
+import { error } from "../toast";
 
 class WeatherApi {
     private readonly apiName = "weatherapi";
