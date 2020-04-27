@@ -2,6 +2,8 @@
 <img width="419px" src="https://i.imgur.com/ptyFNx9.png" />
 <img width="419px" src="https://i.imgur.com/TelMbOX.png" />
 
+The project is live at https://github.com/gruckion/squareduptest
+
 # Setup
 
 You will need the Amplify CLI tool in order to run provision the backend of this project on AWS.
