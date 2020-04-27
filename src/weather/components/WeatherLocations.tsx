@@ -28,12 +28,12 @@ const WeatherLocations: React.FunctionComponent<WeatherLocationsProps> = ({ onCh
     const onChangeLocationName = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoading(true);
         const locationName = e.target.value;
+        setLocationName(locationName);
         if (locationName.length === 0) {
             setWeatherLocationRows([]);
             setLoading(false);
             return;
         }
-        setLocationName(locationName);
         await debounceLocationData(locationName);
     }
 
