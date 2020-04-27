@@ -5,10 +5,7 @@ import { Fab } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { WeatherContainer, WeatherInfo, WeatherOverview, WeatherLocations } from '.';
 import { Progress } from '../../progress';
-
 import "../styles/weather.scss";
-
-
 
 const buildWeatherTable = (consolidated_weather: ConsolidatedWeather[]) => {
     var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
