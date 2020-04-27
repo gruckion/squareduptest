@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/squareduptest/static/css/main.af1729c8.chunk.css",
-    "main.js": "/squareduptest/static/js/main.48ed4fb1.chunk.js",
-    "main.js.map": "/squareduptest/static/js/main.48ed4fb1.chunk.js.map",
+    "main.js": "/squareduptest/static/js/main.b13415fa.chunk.js",
+    "main.js.map": "/squareduptest/static/js/main.b13415fa.chunk.js.map",
     "runtime-main.js": "/squareduptest/static/js/runtime-main.7aba2ee7.js",
     "runtime-main.js.map": "/squareduptest/static/js/runtime-main.7aba2ee7.js.map",
     "static/js/2.662b4388.chunk.js": "/squareduptest/static/js/2.662b4388.chunk.js",
     "static/js/2.662b4388.chunk.js.map": "/squareduptest/static/js/2.662b4388.chunk.js.map",
     "index.html": "/squareduptest/index.html",
-    "precache-manifest.593f9c739898598374d455e8b812896b.js": "/squareduptest/precache-manifest.593f9c739898598374d455e8b812896b.js",
+    "precache-manifest.7f91ffafb8d0b082f9a0cd0d945892bc.js": "/squareduptest/precache-manifest.7f91ffafb8d0b082f9a0cd0d945892bc.js",
     "service-worker.js": "/squareduptest/service-worker.js",
     "static/css/main.af1729c8.chunk.css.map": "/squareduptest/static/css/main.af1729c8.chunk.css.map",
     "static/js/2.662b4388.chunk.js.LICENSE.txt": "/squareduptest/static/js/2.662b4388.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.7aba2ee7.js",
     "static/js/2.662b4388.chunk.js",
     "static/css/main.af1729c8.chunk.css",
-    "static/js/main.48ed4fb1.chunk.js"
+    "static/js/main.b13415fa.chunk.js"
   ]
 }
